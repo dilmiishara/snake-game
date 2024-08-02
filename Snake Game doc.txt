@@ -1,0 +1,162 @@
+Snake Game
+IC 1303 – Application Laboratory II
+Level 1 – Semester II
+Student Index : 2021t01258
+Student Name : Wimalaweera R.B.D.I
+
+
+
+Introduction
+
+This represents a simple Snake game implemented using HTML, CSS, and JavaScript. The game provides a grid-based play board where the player controls a snake to eat food and increase their score. Here's a breakdown of the different components:
+
+HTML Structure:
+
+The HTML code defines a container with the class "wrapper" that holds all the game elements.
+Inside the wrapper, there is a "game-details" section that displays the current score and high score.
+The "play-board" div represents the grid where the game is played.
+The "controls" div contains four arrow icons representing the directional controls for the snake.
+CSS Styling:
+
+The CSS code defines the styles for different elements of the game, including the wrapper, game details, play board, food, snake head, and controls.
+The styles determine the layout, colors, and dimensions of the game components to create an appealing visual appearance.
+JavaScript Logic:
+
+The JavaScript code handles the game logic and interactions.
+It starts by selecting the necessary elements from the HTML using document.querySelector.
+Variables are declared to store the game state, snake position, score, high score, and other relevant information.
+Event listeners are added to the arrow controls, allowing the player to change the snake's direction.
+The game is initialized with the initializeGame function, which updates the game state, checks for collisions, updates the score, and renders the game board.
+The setInterval function is used to repeatedly call the initializeGame function at regular intervals, creating the illusion of movement.
+The changeFoodPosition function generates random coordinates for the food item.
+The handleGameOver function is triggered when the game is over, displaying an alert and reloading the page. It also saves the score to a text file by creating a Blob object and simulating a click event on a temporary link element.
+The changeDirection function updates the velocity of the snake based on the arrow keys pressed by the player.
+Overall, the code combines HTML, CSS, and JavaScript to create a basic Snake game where the player controls a snake to eat food and achieve a high score.
+
+
+HTML Code
+
+The provided HTML code is the structure of a Snake game web page. Let's break down its different components:
+
+Document Type Declaration:
+
+<!DOCTYPE html>: This declaration specifies the document type and version, which is HTML5 in this case.
+HTML Document Structure:
+
+<html lang="en" dir="ltr">: The opening <html> tag indicates the start of the HTML document. The lang attribute specifies the language as English, and the dir attribute specifies the text direction as left-to-right.
+<head>: The head section contains meta-information and external resources used in the web page.
+<meta charset="utf-8">: Specifies the character encoding for the document as UTF-8, which supports a wide range of characters and symbols from different languages.
+<title>Snake Game Javascript</title>: Sets the title of the web page displayed in the browser's title bar or tab.
+<link rel="stylesheet" href="style.css">: Links an external CSS file named "style.css" to apply styling to the HTML elements.
+<meta name="viewport" content="width=device-width", initial-scale="1.0">: Sets the viewport settings for mobile devices to adjust the page width to the device's screen width.
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">: Loads the Font Awesome CSS library to use icons in the web page.
+<script src="script.js" defer></script>: Links an external JavaScript file named "script.js" and defers its execution until the document has finished loading.
+<body> Element:
+
+The <body> element contains the visible content of the web page.
+<div class="wrapper">: A container div that wraps all the game elements and sets the game's dimensions and border radius.
+<div class="game-details">: A section that displays game details such as the player's score and high score.
+<span class="score">Score: 0</span>: A span element to display the current score of the player.
+<span class="high-score">High Score: 30</span>: A span element to display the high score achieved by the player.
+<div class="play-board"></div>: An empty div element with the class "play-board" that represents the game board where the snake and food will be displayed.
+<div class="controls">: A div element to contain the control buttons for the game.
+<i data-key="ArrowLeft" class="fa-solid fa-arrow-left-long"></i>: An icon element representing the left arrow control button.
+<i data-key="ArrowUp" class="fa-solid fa-arrow-up-long"></i>: An icon element representing the up arrow control button.
+<i data-key="ArrowRight" class="fa-solid fa-arrow-right-long"></i>: An icon element representing the right arrow control button.
+<i data-key="ArrowDown" class="fa-solid fa-arrow-down-long"></i>: An icon element representing the down arrow control button.
+CSS Styling (Not Shown Here):
+The CSS file "style.css" (not provided in the code snippet) is linked in the head section and contains the styling rules for the different HTML elements used in the game, including the game board, control buttons, and game details section.
+Overall, the HTML code sets up the basic structure of the Snake game web page, defines the game board and control elements, and links the necessary CSS and
+
+
+
+
+CSS Code
+
+The CSS code provided is responsible for styling the Snake game web page. Here's an explanation of the CSS rules:
+
+Universal Selector:
+
+*: Targets all elements on the page.
+CSS properties: Sets margin, padding, box-sizing, and font-family to default values.
+Body Selector:
+
+body: Targets the body element.
+CSS properties: Aligns the content vertically and horizontally in the center and sets the minimum height of the body to 100% of the viewport height. Also sets the background color to #06000a.
+Wrapper Class:
+
+.wrapper: Targets elements with the class "wrapper".
+CSS properties: Sets the width and height of the wrapper, as well as the display as flex to create a flex container. The overflow property is set to hidden to prevent content from overflowing. The flex-direction is set to column to stack the child elements vertically. The border-radius property is used to create rounded corners. The background color is set to #10011e.
+Game Details Class:
+
+.game-details: Targets elements with the class "game-details".
+CSS properties: Sets the text color to #DADADA, font size to 1.2rem, font weight to 500, and adds padding. The display is set to flex to create a flex container with the space-between value for the justify-content property. This aligns the child elements horizontally with space between them.
+Play Board Class:
+
+.play-board: Targets elements with the class "play-board".
+CSS properties: Sets the width and height to 100% of the parent container. The display is set to grid, and the grid-template property creates a grid layout with 30 rows and 30 columns. The background color is set to #321457.
+Play Board Food Class:
+
+.play-board .food: Targets elements with the class "food" inside the "play-board" class.
+CSS properties: Sets the background color to #e5094e and adds a border-radius of 20px to create a circular shape for the food.
+Play Board Head Class:
+
+.play-board .head: Targets elements with the class "head" inside the "play-board" class.
+CSS properties: Sets the background color to rgb(244, 165, 239) and inherits the border color from the parent element.
+Controls Class:
+
+.controls: Targets elements with the class "controls".
+CSS properties: Sets the display to none initially, hiding the controls on the page. The justify-content is set to space-between to evenly distribute the child elements horizontally.
+Controls Icon Class:
+
+.controls i: Targets elements of type "i" inside the "controls" class.
+CSS properties: Adds padding, sets the text color to #DADADA, centers the text, sets the cursor to pointer, and sets the font size. The width is calculated based on the available space, and a right border is added to separate the icons.
+Media Query:
+
+@media screen and (max-width: 800px): Targets the CSS rules inside the media query when the screen width is 800px or less.
+CSS properties: Adjusts the styles for smaller screens. The wrapper width and height are increased, font size and padding in game-details are reduced, and the controls are displayed as flex with smaller padding and font size.
+The CSS code defines the visual styles for the Snake game web page, including the colors, fonts, sizes, and layout of the elements. It ensures a visually pleasing and responsive design for the game interface.
+
+Javascript Code
+
+The provided JavaScript code implements the functionality of a Snake game. Here's an explanation of the different parts of the code:
+
+Variable Declarations:
+
+playBoard, scoreElement, highScoreElement: Variables that store references to elements in the HTML document using querySelector.
+controls: Variable that stores references to all the control elements in the HTML document using querySelectorAll.
+Various other variables used to track game state, such as isGameOver, foodX, foodY, snakeX, snakeY, snakeBody, velocityX, velocityY, setIntervalId, score, and highScore.
+changeFoodPosition() Function:
+
+Generates random positions (foodX and foodY) for the food element within the game board.
+handleGameOver() Function:
+
+Stops the game loop (clearInterval) and displays an alert indicating that the game is over.
+Reloads the page using location.reload() to restart the game.
+Retrieves the current high score from local storage.
+Creates a text file containing the score.
+Creates a temporary link element and triggers a click event to initiate the download.
+Removes the temporary link and revokes the temporary URL.
+changeDirection(e) Function:
+
+Handles the change in snake direction based on the arrow key pressed.
+Updates the velocityX and velocityY variables accordingly.
+Event Listeners:
+
+Attaches click event listeners to the control elements.
+Calls the changeDirection() function when a control element is clicked.
+initializeGame() Function:
+
+Checks if the game is over and calls the handleGameOver() function if necessary.
+Generates the HTML markup for the game board, including the snake, food, and score elements.
+Handles collision detection between the snake and the food.
+Updates the snake's position and body based on the current velocity.
+Checks for collision with the game board boundaries or with the snake's own body, and sets the isGameOver flag accordingly.
+Updates the score and high score elements in the HTML.
+Updates the playBoard element with the new HTML markup.
+Additional Function Calls:
+
+Calls changeFoodPosition() to initialize the position of the food element.
+Sets an interval using setInterval to repeatedly call the initializeGame() function at regular intervals, creating the game loop.
+Attaches a keydown event listener to the document, calling the changeDirection() function when an arrow key is pressed.
+The JavaScript code handles the game logic for the Snake game, including updating the snake's position, detecting collisions, generating the game board, and managing the score. It also includes event listeners to handle user input and triggers the appropriate actions based on the user's interactions.
